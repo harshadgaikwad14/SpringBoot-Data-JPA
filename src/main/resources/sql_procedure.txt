@@ -1,0 +1,51 @@
+## TO Create Table employees_procedure
+CREATE TABLE employees_procedure (
+	employeeid BIGINT(20) NOT NULL,
+	first_name VARCHAR(255) NULL DEFAULT NULL,
+	last_name VARCHAR(255) NULL DEFAULT NULL,
+	PRIMARY KEY (employeeid)
+);
+
+===========================================================================
+
+## TO Create get_all_employees_procedure
+CREATE PROCEDURE get_all_employees_procedure()
+BEGIN
+	select * from employees_procedure;
+END
+
+## TO Call get_all_employees_procedure
+CALL get_all_employees_procedure()
+
+===========================================================================
+
+## TO Create get_filter_employees_procedure
+CREATE PROCEDURE get_filter_employees_procedure(
+	IN employee_id BIGINT
+)
+BEGIN
+select * from employees_procedure where employeeid = employee_id;
+END
+
+## TO Call get_filter_employees_procedure
+CALL get_filter_employees_procedure('440')
+
+
+===========================================================================
+
+## TO Create get_addition_procedure
+
+CREATE PROCEDURE get_addition_procedure(
+	IN param1 BIGINT,
+	IN param2 BIGINT,
+	OUT result_param BIGINT
+
+
+)
+BEGIN
+set result_param = param1+param2;
+END
+
+## TO Call get_addition_procedure
+CALL get_addition_procedure('4', '6', @result);
+select @result;
